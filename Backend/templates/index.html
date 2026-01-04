@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATS Score Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="top-bar">
+    <div class="brand">ATS Score Checker</div>
+    <button class="top-btn">Analyze Resume</button>
+</header>
+
+<!-- ================= MAIN SECTION ================= -->
+<main class="main-section">
+
+    <h1>
+        Check Your Resume’s <br>
+        <span>ATS Match Score</span>
+    </h1>
+
+    <p class="subtitle">
+        Upload your resume and paste the job description to instantly
+        see how well your profile matches the role.
+    </p>
+
+    <!-- ================= ATS FORM ================= -->
+    <form id="ats-form" enctype="multipart/form-data">
+
+        <!-- ================= RESUME UPLOAD ================= -->
+        <div class="upload-box">
+
+            <input 
+                type="file"
+                id="resume"
+                accept=".pdf,.doc,.docx,.txt"
+                hidden
+            >
+
+            <button type="button" class="upload-btn" onclick="document.getElementById('resume').click()">
+                Upload Resume
+            </button>
+
+            <p id="file-name" class="file-info">
+                Supported formats: PDF, DOC, DOCX, TXT
+            </p>
+
+        </div>
+
+
+        <div class="card">
+            <label>Job Description</label>
+            <textarea id="jobDesc" placeholder="Paste the job description here..." required></textarea>
+        </div>
+
+        <button type="button" class="main-btn" onclick="checkATS()">
+            Check ATS Score
+        </button>
+
+    </form>
+
+    <!-- ================= RESULT ================= -->
+    <!-- ================= ANALYZING LOADER ================= -->
+    <div id="loader" class="loader hidden">
+        ⏳ Analyzing your resume...
+    </div>
+
+    <!-- ================= ATS SCORE SECTION ================= -->
+    <section id="score-container" class="score-section hidden">
+
+        <h2 class="result-heading">ATS Evaluation Result</h2>
+        <p class="result-subtitle">
+            Based on your resume and the provided job description
+        </p>
+
+        <!-- Circular Score -->
+        <div class="circle-wrapper">
+            <svg width="180" height="180">
+                <circle class="ring-bg" cx="90" cy="90" r="80"></circle>
+                <circle class="ring-progress" cx="90" cy="90" r="80"></circle>
+            </svg>
+            <div class="circle-text">
+                <span id="progress-percent">0%</span>
+                <small>ATS Match</small>
+            </div>
+        </div>
+
+        <!-- ATS RESULT TEXT -->
+        <div class="result-wrapper">
+            <div class="result-card">
+               <div id="ats-text" class="ats-content"></div>
+            </div>
+        </div>
+
+    </section>
+
+
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
