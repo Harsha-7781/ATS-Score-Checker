@@ -55,14 +55,23 @@ This project demonstrates real-world usage of **Generative AI (Google Gemini)** 
 
 ## 📂 Project Structure
 ATS-Score-Checker/
+
 ├── backend/
+
 │ ├── app.py
+
 │ ├── uploads/
+
 │ ├── templates/
+
 │ │ └── index.html
+
 │ └── static/
+
 │ ├── style.css
+
 │ └── script.js
+
 ├── README.md
 
 
